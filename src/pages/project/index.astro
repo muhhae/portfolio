@@ -1,18 +1,14 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
-import FormattedDate from "../components/FormattedDate.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
 
-const posts = (await getCollection("blog"))
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-    .slice(-2);
-
-const projects = (await getCollection("project"))
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-    .slice(-2);
+const posts = (await getCollection("project")).sort(
+    (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
+);
 ---
 
 <!doctype html>
@@ -37,6 +33,17 @@ const projects = (await getCollection("project"))
             ul li * {
                 text-decoration: none;
                 transition: 0.2s ease;
+            }
+            ul li:first-child {
+                width: 100%;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+            ul li:first-child img {
+                width: 100%;
+            }
+            ul li:first-child .title {
+                font-size: 2.369rem;
             }
             ul li img {
                 margin-bottom: 0.5rem;
@@ -81,47 +88,10 @@ const projects = (await getCollection("project"))
     <body>
         <Header />
         <main>
-            <h1>🚀 Hi.. There!</h1>
-            <p>
-                Welcome, this is my personal website that I make using Astro.js,
-                Amazing web framework that make working with content based
-                website so nice
-            </p>
-            <p>
-                This website use Official Astro.js blog template as starter then
-                built on it as time goes by.
-            </p>
-            <hr />
-            <h2>Check out recent blog</h2>
             <section>
                 <ul>
                     {
                         posts.map((post) => (
-                            <li>
-                                <a href={`/blog/${post.slug}/`}>
-                                    <img
-                                        width={720}
-                                        height={360}
-                                        src={post.data.heroImage}
-                                        alt=""
-                                    />
-                                    <h4 class="title">{post.data.title}</h4>
-                                    <p class="date">
-                                        <FormattedDate
-                                            date={post.data.pubDate}
-                                        />
-                                    </p>
-                                </a>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </section>
-            <h2>And some project</h2>
-            <section>
-                <ul>
-                    {
-                        projects.map((post) => (
                             <li>
                                 <a href={`/blog/${post.slug}/`}>
                                     <img
