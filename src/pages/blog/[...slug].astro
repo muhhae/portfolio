@@ -15,4 +15,34 @@ const { Content } = await post.render();
 
 <BlogPost {...post.data}>
     <Content />
+    <disqus-comment data-url={Astro.url.pathname}></disqus-comment>
+    <div id="disqus_thread" post-url={Astro.url.pathname}></div>
 </BlogPost>
+
+<script>
+    class DisqusComment extends HTMLElement {
+        constructor() {
+            super();
+
+            const url = this.dataset.url;
+            var disqus_config = function () {
+                this.page.url = url; // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = url; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            // DON'T EDIT BELOW THIS LINE
+            var d = document,
+                s = d.createElement("script");
+            s.src = "https://muhhae-personal-website.disqus.com/embed.js";
+            s.setAttribute("data-timestamp", +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    }
+
+    customElements.define("disqus-comment", DisqusComment);
+</script>
+<noscript
+    >Please enable JavaScript to view the <a
+        href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a
+    ></noscript
+>
