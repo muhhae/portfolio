@@ -19,7 +19,7 @@ const { Content } = await post.render();
     <div id="disqus_thread" post-url={Astro.url.pathname}></div>
 </BlogPost>
 
-<script>
+<script is:inline>
     class DisqusComment extends HTMLElement {
         constructor() {
             super();
