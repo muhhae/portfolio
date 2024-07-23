@@ -1,0 +1,36 @@
+---
+title: "Pronounciation Classification with CNN 1D"
+description: "Project to complete the assignment for Machine Learning Class"
+pubDate: "Jul 23 2024"
+heroImage: "/blog-placeholder-5.jpg"
+---
+
+## Short Description
+
+This project tried to classify correct pronounciation from the word "City" with CNN 1D.
+
+## Datasets
+
+Our team collect our own datasets and then using Google API to classify the word. You can check it on [Code](#Code) section
+
+## Code
+
+-   [Project Workspace](https://drive.google.com/drive/u/0/folders/1LRR3OiXHEtHIacqi3tQbiRMbV1dmJa43)
+-   [Source Code](https://colab.research.google.com/drive/1gaXD_8femkqZbJI-fKJ63mVhVhtOqFNZ?usp=drive_link)
+
+## How it works
+
+-   First we get mel spectogram from our audio with librosa.feature.melspectogram function and then resize it to (128,128)
+    ![Spectogram Visual](/project/pronounciation-classification/spectogram-visual.png)
+    picture above is how it looks when we visualize it.
+
+-   Because our data is very we use Data Augmentation to make of it. This is our data count
+    <br /> Original Data : 141
+    <br /> Augmented Data : 423
+    <br /> Total Data : 564
+    <br /> Train : 451
+    <br /> Test : 113
+-   After that we setup our model with Keras Library. This is how our model looks like.
+    ![Our model](/project/pronounciation-classification/model.png)
+-   This is the result of our model
+    ![result](/project/pronounciation-classification/res.png)
